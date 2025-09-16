@@ -1,3 +1,18 @@
+<style>
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-slideUp {
+  animation: slideUp 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+</style>
 <template>
   <div class="flex flex-row w-full p-2 font-mono h-fit bg-amber-100">
     <div class="basis-1/3">
@@ -14,9 +29,14 @@
   </div>
 
   <section>
-     <div v-if="showCard" class="mb-6">
-    <ProfileCard />
-  </div>
+    <div v-if="showCard" class="fixed inset-0 z-50 flex items-center justify-center">
+      <!-- Overlay -->
+  <div class="absolute inset-0 transition-opacity duration-300 bg-gradient-to-b from-transparent via-gray-400 to-transparent" @click="onClickShowCard"></div>
+      <!-- Card với hiệu ứng Tailwind -->
+      <div class="relative z-10 w-full max-w-xl animate-slideUp">
+        <ProfileCard />
+      </div>
+    </div>
   </section>
 
 </template>
